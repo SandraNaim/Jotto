@@ -2,14 +2,15 @@ import React from 'react';
 import { mount } from 'enzyme';
 import App from './App';
 import { getSecretWord as mockGetSecretWord } from './actions';
-import { findByTestAttr } from '../test/testUtils';
+import { findByTestAttr, storeFactory } from '../test/testUtils';
+import { Provider } from 'react-redux';
 
 // activate global mock to make sure getSecrteWord dosen't make netword call
 jest.mock('./actions')
 
 const setup = () => {
-  // use mount instead of shallow because useEffect is not called on shallow
-    return mount(<App />)
+    const store = storeFactory();
+    return mount(<Provider store={store}><App /></Provider>)
 } 
 
 test('renders without error', () => {
