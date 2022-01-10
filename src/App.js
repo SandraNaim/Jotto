@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { getSecretWord } from './actions';
 import './App.css';
 import Congrats from './Congrats';
@@ -6,9 +7,11 @@ import GuessedWords from './GuessedWords';
 import Input from './Input';
 
 function App() {
-  const success = false;
-  const secretWord = 'party';
-  const guessedWords = [];
+  const success = useSelector(state => state.success);
+  const guessedWords = useSelector(state => state.guessedWords);
+  const secretWord = useSelector(state => state.secretWord);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getSecretWord();
