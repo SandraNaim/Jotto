@@ -1,11 +1,16 @@
+import React from "react";
 import { mount } from "enzyme";
-import { findByTestAttr } from "../test/testUtils";
+import { Provider } from "react-redux";
+
+import { findByTestAttr, storeFactory } from "../test/testUtils";
 import App from "./App";
 
-const setup = (state = {}) => {
+// activate global mock to make sure getSecrteWord dosen't make netword call
+jest.mock('./actions')
 
-    // TODO: apply state it will differ  depending if it is a redux or context
-    const wrapper = mount(<App />);
+const setup = (initialState = {}) => {
+    const store = storeFactory(initialState)
+    const wrapper = mount(<Provider store={store}><App /></Provider>);
     
     // add value to input box
     const inputBox = findByTestAttr(wrapper, 'input-box');
@@ -18,7 +23,7 @@ const setup = (state = {}) => {
     return wrapper;
 }
 
-describe.skip('no words guessed', () => {
+describe('no words guessed', () => {
     let wrapper;
     beforeEach(() => {
         wrapper = setup({
@@ -33,7 +38,7 @@ describe.skip('no words guessed', () => {
     })
 })
 
-describe.skip('some word guessed', () => {
+describe('some word guessed', () => {
     let wrapper;
     beforeEach(() => {
         wrapper = setup({
@@ -48,7 +53,7 @@ describe.skip('some word guessed', () => {
     })
 })
 
-describe.skip('guess secret word', () => {
+describe('guess secret word', () => {
     let wrapper;
     beforeEach(() => {
         wrapper = setup({
@@ -69,7 +74,7 @@ describe.skip('guess secret word', () => {
 
     test('add rows to guessedWords table', () => {
         const guessedWordNodes = findByTestAttr(wrapper, 'guessed-word');
-        expect(guessedWordNodes).toHaveLength(2);
+        expect(guessedWordNodes).toHaveLength(3);
     })
 
     test('display congrats component', () => {
