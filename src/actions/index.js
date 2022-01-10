@@ -1,5 +1,6 @@
 import axios from "axios";
 import { getLetterMatchCount } from "../helpers";
+import fiveLetterWords from '../five-letter-words.json';
 
 export const actionTypes = {
     CORRECT_GUESS: 'CORRECT_GUESS',
@@ -32,5 +33,18 @@ export const getSecretWord = () => {
             payload: response.data
           })
         });
-    }
-  }
+    }  
+
+    // you can either run it from the 3030 server or just uncomment this line
+
+    // return function(dispatch) {
+    //     let data = fiveLetterWords.fiveLetterWords
+    //     const word = data[Math.floor(Math.random() * data.length)]
+    //     console.log("word:", word)
+
+    //     return dispatch({
+    //         type: actionTypes.SET_SECRET_WORD,
+    //         payload: word
+    //       })
+    // }
+}
