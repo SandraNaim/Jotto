@@ -1,15 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { guessWord } from "./actions";
+import { giveUp, guessWord } from "./actions";
 
 const Input = ({ secretWord}) => {
     const [currentGuess, setCurrentGuess] = React.useState('');
     const dispatch = useDispatch()
     const success = useSelector(state => state.success)
+    const gaveUp = useSelector((state) => state.gaveUp);
 
-    if(success) {
-        return (<div data-test="component-input" />)
+    if(success || gaveUp) {
+        return (
+            <div> 
+                <div data-test="component-input" />
+            </div>
+        )
     }
 
     return (
@@ -33,6 +38,16 @@ const Input = ({ secretWord}) => {
                     className="btn btn-primary mb-2"
                 >
                     Submit   
+                </button>
+                <button
+                    data-test="give-up-button"
+                    onClick={(evt) => {
+                        evt.preventDefault();
+                        dispatch(giveUp());
+                    }}
+                    className="btn btn-danger mb-2"
+                >
+                Give up
                 </button>
             </form>
         </div>
