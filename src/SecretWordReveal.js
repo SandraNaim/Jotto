@@ -5,7 +5,7 @@ const SecretWordReveal = (props) => {
       return (
         <div className="alert alert-primary">
             <span>
-                The secret word was: { props.secretWord } <br/> You are a looser ^-^
+                The secret word was: { props.secretWord } <br/> You are a loser ^_^
             </span>
         </div>
       );

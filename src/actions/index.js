@@ -8,6 +8,8 @@ export const actionTypes = {
     SET_SECRET_WORD: 'SET_SECRET_WORD',
     RESET_GAME: 'RESET_GAME',
     GIVE_UP: 'GIVE_UP',
+    ENTER_OWN_SECRET_WORD: 'ENTER_OWN_SECRET_WORD',
+    USER_ENTERING: 'USER_ENTERING'
 }
 
 export const guessWord = (guessedWord) => {
@@ -62,3 +64,12 @@ export const resetGame = () => {
 export const giveUp = () => {
     return { type: actionTypes.GIVE_UP };
 };
+
+export const enterOwnSecretWord = (userSecretWord) => {
+    return (dispatch) => {
+        dispatch({ type: actionTypes.SET_SECRET_WORD, payload: userSecretWord });
+        dispatch({ type: actionTypes.ENTER_OWN_SECRET_WORD });
+    }
+};
+
+export const setUserEntering = () => ({ type: actionTypes.USER_ENTERING });
