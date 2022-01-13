@@ -20,9 +20,11 @@ describe('guessWord action dispatcher', () => {
             ...initialState,
             success: false,
             guessedWords: [{
-            guessedWord: unsuccessfulGuess,
-            letterMatchCount: 3
-            }]
+                guessedWord: unsuccessfulGuess,
+                letterMatchCount: 3,
+            }],
+            gaveUp: false,
+            userSecretWord: null
         }
         expect(newState).toEqual(expectedState);
     });
@@ -35,9 +37,11 @@ describe('guessWord action dispatcher', () => {
             ...initialState,
             success: true,
             guessedWords: [{
-            guessedWord: secretWord,
-            letterMatchCount: 5
-            }]
+                guessedWord: secretWord,
+                letterMatchCount: 5
+            }],
+            gaveUp: false,
+            userSecretWord: null
         }
         expect(newState).toEqual(expectedState);
         });
@@ -58,9 +62,11 @@ describe('guessWord action dispatcher', () => {
             secretWord,
             success: false,
             guessedWords: [
-            ...guessedWords,
-            { guessedWord: unsuccessfulGuess, letterMatchCount: 3 }
-            ]
+                ...guessedWords,
+                { guessedWord: unsuccessfulGuess, letterMatchCount: 3 }
+            ],
+            gaveUp: false,
+            userSecretWord: null
         }
         expect(newState).toEqual(expectedState);
     });
@@ -72,9 +78,11 @@ describe('guessWord action dispatcher', () => {
             secretWord,
             success: true,
             guessedWords: [
-            ...guessedWords,
-            { guessedWord: secretWord, letterMatchCount: 5 }
-            ]
+                ...guessedWords,
+                { guessedWord: secretWord, letterMatchCount: 5 }
+            ],
+            gaveUp: false,
+            userSecretWord: null
         }
         expect(newState).toEqual(expectedState);
         });
