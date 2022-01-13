@@ -3,15 +3,15 @@ import React from "react";
 const TotalGuesses = (props) => {
     if(props.guessedWords.length){
         return (
-            <div className="">
-                <span>
+            <div data-test="component-total-guesses" className="">
+                <span data-test="total-guesses-number">
                     Total Guesses: #{props.guessedWords.length}
                 </span>
             </div>
         )
     } else {
         return (
-            <div />
+            <div data-test="component-total-guesses" />
         )
     }
 };
