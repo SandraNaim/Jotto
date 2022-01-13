@@ -15,3 +15,8 @@ test('return `true` for action type CORRECT_GUESS', () => {
     const newState = successReducer(false, { type: actionTypes.CORRECT_GUESS });
     expect(newState).toBe(true)
 })
+
+test('return `false` for action type RESET_GAME', () => {
+    const newState = successReducer(false, { type: actionTypes.RESET_GAME });
+    expect(newState).toBe(false)
+})
